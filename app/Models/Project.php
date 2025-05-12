@@ -29,9 +29,9 @@ class Project extends Model
     }
 
     public function files()
-    {
-        return $this->hasMany(ProjectFile::class);
-    }
+{
+    return $this->hasMany(ProjectFile::class);
+}
 
     public function screenshots()
     {
@@ -42,4 +42,13 @@ class Project extends Model
     {
         return $this->hasMany(DocumentationPage::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 }

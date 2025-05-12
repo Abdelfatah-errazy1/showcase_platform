@@ -11,7 +11,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::latest()->get();
-        return view('admin.projects.index', compact('projects'));
+        return view('pages.projects.index', compact('projects'));
     }
 
     public function create()
@@ -34,7 +34,7 @@ class ProjectController extends Controller
             $imagePath = $request->file('image')->store('projects', 'public');
         }
 
-        Project::create([
+        $project=Project::create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
@@ -43,7 +43,7 @@ class ProjectController extends Controller
             'documentation' => $request->documentation,
             'image_path' => $imagePath,
         ]);
-
+    $project->tags()->attach($request->tags); // dans store()
         return redirect()->route('admin.projects.index')->with('success', 'Project created.');
     }
 

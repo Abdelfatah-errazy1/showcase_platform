@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('project_files', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('file_path'); // path in storage/app/public
+            $table->enum('type', ['demo', 'source', 'documentation'])->default('source');
+            $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

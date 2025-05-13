@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TechnologyController;
-use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommentController;
 
@@ -17,10 +18,17 @@ use App\Http\Controllers\CommentController;
 Route::get('/', function () {
     return redirect(route('projects.index'));
 })->name('home');
+Route::post('/admin/projects/upload-screenshot', [ProjectController::class, 'uploadScreenshot'])
+    ->name('admin.projects.upload-screenshot');
 
 Route::prefix('projects')->group(function () {
     Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
-    Route::get('/{slug}', [ProjectController::class, 'show'])->name('projects.show');
+    Route::get('/{id}', [ProjectController::class, 'show'])->name('projects.show');
+});
+Route::prefix('auth')->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+    Route::post('/login', [AuthController::class, 'signIn'])->name('auth.login');
+    Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 });
 
 /*
@@ -39,11 +47,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     | Projects
     |-------------------
     */
-    Route::get('/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
+    Route::get('/projects', [ProjectController::class, 'adminIndex'])->name('admin.projects.index');
     Route::get('/projects/create', [ProjectController::class, 'create'])->name('admin.projects.create');
     Route::post('/projects', [ProjectController::class, 'store'])->name('admin.projects.store');
     Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('admin.projects.edit');
-    Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('admin.projects.update');
+    Route::post('/projects/{project}', [ProjectController::class, 'update'])->name('admin.projects.update');
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
 
     /*
@@ -88,10 +96,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/admin/screenshots/{screenshot}', [ScreenshotController::class, 'destroy'])->name('admin.screenshots.destroy');
     
     
-    Route::prefix('admin/tags')->middleware(['auth'])->group(function () {
+    Route::prefix('tags')->middleware(['auth'])->group(function () {
         Route::get('/', [TagController::class, 'index'])->name('admin.tags.index');
         Route::get('/create', [TagController::class, 'create'])->name('admin.tags.create');
         Route::post('/', [TagController::class, 'store'])->name('admin.tags.store');
+        Route::get('/edit', [TagController::class, 'edit'])->name('admin.tags.edit');
+        Route::post('/update', [TagController::class, 'update'])->name('admin.tags.update');
         Route::delete('/{tag}', [TagController::class, 'destroy'])->name('admin.tags.destroy');
     });
    });

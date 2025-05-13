@@ -47,7 +47,7 @@
                     <!-- Main Content -->
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <div id="kt_content_container" class="container-xxl">
-                            <!-- Your page content here -->
+                            @yield('content')
                         </div>
                     </div>
                 </div>

@@ -11,12 +11,12 @@
               <div class="icon"><img src="{{asset('images/ezd.png')}}"></div>
               {{-- <h2>EZD</h2> --}}
               <p>Have'nt an account?</p>
-              <a href="{{ route('register.create')}}" class="btn btn-white btn-outline-white">Sign Up</a>
+              <a href="{{ route('auth.register')}}" class="btn btn-white btn-outline-white">Sign Up</a>
             </div>
           </div>
           <div class="login-wrap p-4 p-md-5">
             <h3 class="mb-4">Hello! <span> signIn to EZD</span></h3>
-            <form action="{{ route('sessions.store')}}" method="post" class="signup-form">
+            <form action="{{ route('auth.login')}}" method="post" class="signup-form">
               @csrf
               <div class="form-group mb-4">
                 <label class="label" for="email">Email Address</label>

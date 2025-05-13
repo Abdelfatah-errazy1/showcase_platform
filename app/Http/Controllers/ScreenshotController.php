@@ -38,4 +38,14 @@ class ScreenshotController extends Controller
 
         return back()->with('success', 'Capture supprimée.');
     }
+    public function uploadScreenshot(Request $request)
+{
+    $request->validate([
+        'screenshot' => 'required|image|max:3072'
+    ]);
+
+    $path = $request->file('screenshot')->store('screenshots', 'public');
+
+    return response()->json(['path' => $path]);
+}
 }

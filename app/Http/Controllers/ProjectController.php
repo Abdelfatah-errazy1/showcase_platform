@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Project;
+use App\Models\Tag;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,10 +16,25 @@ class ProjectController extends Controller
         $projects = Project::latest()->get();
         return view('pages.projects.index', compact('projects'));
     }
+    public function adminIndex()
+    {
+        $projects = Project::latest()->get();
+        // dd($projects);
+        return view('pages.admin.projects.index', compact('projects'));
+    }
+    public function show($id)
+    {
+        $project = Project::find($id);
+        // dd($projects);
+return view('pages.projects.show', compact('project'));
+    }
 
     public function create()
     {
-        return view('admin.projects.create');
+        $categories = Category::all();
+        $technologies = Technology::all();
+        $tags = Tag::all();
+        return view('pages.admin.projects.create', compact('categories', 'technologies', 'tags'));
     }
 
     public function store(Request $request)
@@ -49,7 +67,7 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        return view('pages.admin.projects.edit', compact('project'));
     }
 
     public function update(Request $request, Project $project)

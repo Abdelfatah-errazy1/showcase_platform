@@ -11,12 +11,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->paginate(10);
-        return view('admin.categories.index', compact('categories'));
+        return view('pages.admin.categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('admin.categories.create');
+        return view('pages.admin.categories.create');
     }
 
     public function store(Request $request)

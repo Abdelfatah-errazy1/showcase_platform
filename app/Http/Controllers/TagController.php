@@ -1,4 +1,5 @@
 <?php
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
@@ -10,12 +11,12 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::latest()->get();
-        return view('admin.tags.index', compact('tags'));
+        return view('pages.admin.tags.index', compact('tags'));
     }
 
     public function create()
     {
-        return view('admin.tags.create');
+        return view('pages.admin.tags.create');
     }
 
     public function store(Request $request)

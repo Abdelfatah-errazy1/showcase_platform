@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->text('description')->nullable();
+            $table->boolean('pinned')->default(false);
+            $table->string('class')->nullable();
+
             $table->timestamps();
         });
     }

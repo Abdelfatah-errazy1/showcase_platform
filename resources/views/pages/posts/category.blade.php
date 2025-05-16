@@ -27,7 +27,13 @@
             
             <div class="col-md-12">
               <div class="post post-thumb">
-                <a class="post-img" href="{{ route('show.post',['category'=>$posts[0]->category->slug,'post'=>$posts[0]->slug])}}"><img src="{{ asset($posts[0]->img) }}" alt=""></a>
+                <a class="post-img" href="{{ route('show.post',['category'=>$posts[0]->category->slug,'post'=>$posts[0]->slug])}}">
+                  <div style="position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-radius: 0.3rem;">
+                      <img src="{{ asset($project->image_path) }}"
+                          alt="{{ ucwords($project->title) }}"
+                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                </a>
                 <div class="post-body">
                   <div class="post-meta">
                     <a class="post-category {{ $posts[0]->category->class }}" href="{{ route('category.posts',$posts[0]->category->slug) }}">{{ $posts[0]->category->name }}</a>

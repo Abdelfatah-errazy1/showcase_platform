@@ -12,7 +12,7 @@
     <ul>
       @foreach ($categories as $category)
         <li>
-          <a href="{{ route('category.posts', $category->slug) }}" 
+          <a href="{{ route('category.projects', $category->slug) }}" 
              class="{{ $category->class }}" 
              aria-label="View category: {{ $category->name }}">
             {{ $category->name }}

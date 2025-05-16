@@ -55,4 +55,24 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('admin.categories.index')->with('success', 'Catégorie supprimée.');
     }
+    
+    public function pinCategory(Request $request, $id)
+    {
+        $category = Category::findOrFail($id);
+        $category->pinned = true;
+        $category->class = $request->input('pinned_class');
+        $category->save();
+    
+        return redirect()->back()->with('success', 'Category pinned successfully!');
+    }
+    
+    public function unpinCategory($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->pinned = false;
+        $category->class = null;
+        $category->save();
+        return redirect()->back()->with('success', 'Category unpinned successfully!');
+    }
+    
 }

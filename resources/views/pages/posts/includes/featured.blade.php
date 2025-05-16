@@ -2,15 +2,18 @@
   <div class="section-title">
     <h2>Most Read</h2>
   </div>
-  @foreach ($mostViewedPosts as $post)
-    <div class="post post-widget" aria-label="Post: {{ $post->title }}">
-      <a class="post-img" href="{{ route('show.post', ['category' => $post->category->slug, 'post' => $post->slug]) }}">
-        <img src="{{ asset($post->img) }}" loading="lazy" alt="Image for {{ $post->title }}" width="100%" height="auto">
-      </a>
+  @foreach ($projects as $project)
+    <div class="post post-widget" aria-label="Post: {{ $project->title }}">
+      <a class="post-img" href="{{ route('projects.show', ['category' => $project->category->slug, 'project' => $project->slug]) }}">
+        <div style="position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-radius: 0.3rem;">
+                <img src="{{ asset($project->image_path) }}"
+                    alt="{{ ucwords($project->title) }}"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+            </div></a>
       <div class="post-body">
         <h3 class="post-title">
-          <a href="{{ route('show.post', ['category' => $post->category->slug, 'post' => $post->slug]) }}" aria-label="Read more about {{ $post->title }}">
-            {{ $post->title }}
+          <a href="{{ route('projects.show', ['category' => $project->category->slug, 'project' => $project->slug]) }}" aria-label="Read more about {{ $project->title }}">
+            {{ $project->title }}
           </a>
         </h3>
       </div>
@@ -23,23 +26,27 @@
 
 <div class="aside-widget" aria-label="Featured Posts">
   <div class="section-title">
-    <h2>Featured Posts</h2>
+    <h2>Featured he Posts</h2>
   </div>
-  @foreach ($posts as $post)
-    <div class="post post-thumb" aria-label="Featured Post: {{ $post->title }}">
-      <a class="post-img" href="{{ route('show.post', ['category' => $post->category->slug, 'post' => $post->slug]) }}">
-        <img src="{{ asset($post->img) }}" loading="lazy" alt="Image for {{ $post->title }}" width="100%" height="auto">
+  @foreach ($projects as $project)
+    <div class="post post-thumb" aria-label="Featured Post: {{ $project->title }}">
+      <a class="post-img" href="{{ route('projects.show', ['category' => $project->category->slug, 'project' => $project->slug]) }}">
+        <div style="position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-radius: 0.3rem;">
+                <img src="{{ asset($project->image_path) }}"
+                    alt="{{ ucwords($project->title) }}"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+            </div>
       </a>
       <div class="post-body">
         <div class="post-meta">
-          <a class="post-category {{ $post->category->class }}" href="{{ route('category.posts', $post->category->slug) }}" aria-label="View posts in {{ $post->category->name }}">
-            {{ $post->category->name }}
+          <a class="post-category {{ $project->category->class }}" href="{{ route('category.projects', $project->category->slug) }}" aria-label="View posts in {{ $project->category->name }}">
+            {{ $project->category->name }}
           </a>
-          <span class="post-date">{{ $post->created_at->diffForHumans() }}</span>
+          <span class="post-date">{{ $project->created_at->diffForHumans() }}</span>
         </div>
         <h3 class="post-title">
-          <a href="{{ route('show.post', ['category' => $post->category->slug, 'post' => $post->slug]) }}" aria-label="Read more about {{ $post->title }}">
-            {{ $post->title }}
+          <a href="{{ route('projects.show', ['category' => $project->category->slug, 'project' => $project->slug]) }}" aria-label="Read more about {{ $project->title }}">
+            {{ $project->title }}
           </a>
         </h3>
       </div>

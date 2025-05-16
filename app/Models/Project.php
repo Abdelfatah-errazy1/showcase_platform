@@ -13,14 +13,15 @@ class Project extends Model
         'slug',
         'description',
         'demo_url',
+        'category_id',
         'download_url',
         'documentation',
         'image_path',
     ];
 
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function technologies()

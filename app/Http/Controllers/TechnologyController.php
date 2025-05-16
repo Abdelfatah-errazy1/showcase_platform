@@ -10,12 +10,12 @@ class TechnologyController extends Controller
     public function index()
     {
         $technologies = Technology::latest()->paginate(10);
-        return view('admin.technologies.index', compact('technologies'));
+        return view('pages.admin.technologies.index', compact('technologies'));
     }
 
     public function create()
     {
-        return view('admin.technologies.create');
+        return view('pages.admin.technologies.create');
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class TechnologyController extends Controller
 
     public function edit(Technology $technology)
     {
-        return view('admin.technologies.edit', compact('technology'));
+        return view('pages.admin.technologies.edit', compact('technology'));
     }
 
     public function update(Request $request, Technology $technology)

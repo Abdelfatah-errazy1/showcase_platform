@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use App\Models\Project;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +29,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@user.com',
             'password' => bcrypt('user'),
         ]);
+      $category=Category::create([
+            'name' => 'Test User',
+            'slug' => 'user@user.com',
+            'description' => 'bcrypt()',
+        ]);
     
     Project::create([
             'title' => 'Task Manager App',
@@ -33,6 +41,9 @@ class DatabaseSeeder extends Seeder
             'description' => 'An advanced task management web application built with Laravel and Vue.js, featuring authentication, user roles, notifications, and drag-and-drop UI.',
             'demo_url' => 'https://demo.example.com/task-manager',
             'download_url' => 'https://github.com/Abdelfatah-errazy1/task-manager-app/archive/refs/heads/main.zip',
+                'image_path' => 'uploads/1747264886-sport.jpg',
+
+            'category_id'=>$category->id
             // 'documentation_url' => 'https://docs.example.com/task-manager',
         ]);
 
@@ -43,6 +54,70 @@ class DatabaseSeeder extends Seeder
             'demo_url' => 'https://demo.example.com/portfolio-builder',
             'download_url' => 'https://github.com/Abdelfatah-errazy1/portfolio-builder/archive/refs/heads/main.zip',
             // 'documentation_url' => 'https://docs.example.com/portfolio-builder',
+                'image_path' => 'uploads/1747264886-sport.jpg',
+
+            'category_id'=>$category->id
+
+        ]);
+        // Insert categories
+        DB::table('categories')->insert([
+            [
+                'name' => 'Web Development',
+                'slug' => 'web-development',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'name' => 'E-Commerce',
+                'slug' => 'e-commerce',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
+        ]);
+
+        // Insert technologies
+        DB::table('technologies')->insert([
+            [
+                'name' => 'Laravel',
+                'slug' => 'laravel',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'name' => 'Vue.js',
+                'slug' => 'vue-js',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
+        ]);
+
+        // Insert projects (assume categories IDs are 1 and 2)
+        DB::table('projects')->insert([
+            [
+                'title' => 'Task Manager App',
+                'slug' => 'task-manager-app3',
+                'description' => 'A web application to manage tasks efficiently.',
+                'category_id' => 1,
+                'image_path' => 'uploads/1747264886-sport.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'title' => 'E-Commerce Platform',
+                'slug' => 'e-commerce-platform',
+                'description' => 'A full-featured e-commerce platform.',
+                'category_id' => 2,
+                'image_path' => 'uploads/1747264886-sport.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
+        ]);
+
+        // Insert project_technology pivot (assume project IDs are 1 and 2)
+        DB::table('project_technology')->insert([
+            ['project_id' => 1, 'technology_id' => 1], // Laravel
+            ['project_id' => 1, 'technology_id' => 2], // Vue.js
+            ['project_id' => 2, 'technology_id' => 1], // Laravel
         ]);
     
 }

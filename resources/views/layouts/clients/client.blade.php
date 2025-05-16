@@ -9,7 +9,7 @@
 
     <!-- Conditional Meta Tags for Home Page -->
     @if (request()->routeIs('home'))
-        <meta name="google-site-verification" content="ygvWkfiJeD7wJVGjJ2hrvA26IyKU_ctkUIK4gOq7O0o">
+        {{-- <meta name="google-site-verification" content="ygvWkfiJeD7wJVGjJ2hrvA26IyKU_ctkUIK4gOq7O0o"> --}}
         <meta name="description" content="@yield('meta_description', 'Welcome to EZD, your go-to platform for engaging blog content designed to inspire and inform. We cover a wide range of topics, including technology, digital marketing, personal development, and strategies to grow your online presence. Whether you are an aspiring entrepreneur or a seasoned professional, our expertly curated articles will help you learn, grow, and earn. Join our community today and take the next step in your journey toward success')">
         <meta name="keywords" content="@yield('meta_keywords', 'ezdpro,ezd,EZD,Blogging, Online earning, Digital marketing, Technology trends, SEO strategies, Content creation, Passive income, Website monetization, Affiliate marketing, Entrepreneurship, Freelancing tips, Social media growth')">
     @else
@@ -25,14 +25,7 @@
     <link rel="preload" href="{{ asset('web/style.css') }}" as="style">
     <link rel="preload" href="{{ asset('web/bootstrap.min.css') }}" as="style">
     
-    <!-- Google Tag Manager -->
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TZXCCP4H"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-YYKE47JQR5');
-    </script>
+   
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYKE47JQR5"></script>

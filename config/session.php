@@ -31,9 +31,9 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => 120000, // durée de la session (en minutes)
+    'expire_on_close' => true, // garder session même après fermeture du navigateur
 
-    'expire_on_close' => false,
 
     /*
     |--------------------------------------------------------------------------

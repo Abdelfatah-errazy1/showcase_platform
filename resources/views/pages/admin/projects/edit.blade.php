@@ -6,7 +6,7 @@
         <h3 class="card-title">Créer un nouveau projet</h3>
     </div>
     <div class="card-body">
-        <form action="{{ route('admin.projects.update',$project->id) }}" method="POST">
+        <form action="{{ route('admin.projects.update',$project->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Titre</label>
@@ -37,7 +37,10 @@
                 <label for="documentation_url" class="form-label">URL de documentation</label>
                 <input type="url" name="documentation_url" value="{{ old('documentation_url', $project->documentation_url ?? '') }}" class="form-control">
             </div>
-
+            <div class="mb-10">
+                <label class="form-label">Project Image</label>
+                <input type="file" name="image_path" class="form-control" accept="image/*">
+            </div>
             <button type="submit" class="btn btn-primary mt-4">Enregistrer</button>
         </form>
     </div>

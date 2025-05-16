@@ -4,20 +4,20 @@
       <!-- Main Post -->
       <div class="col-md-12">
         <div class="post post-thumb" aria-label="Featured Post">
-          <a class="post-img" href="{{ route('show.post', ['category' => $mosts[0]->category->slug, 'post' => $mosts[0]->slug]) }}">
-            <img src="{{ asset($mosts[0]->img) }}" alt="Image for {{ $mosts[0]->title }}" width="100%" height="auto">
+          <a class="post-img" href="{{ route('projects.show', ['category' => $projects[0]->category->slug, 'project' => $projects[0]->slug]) }}">
+            <img src="{{ asset($projects[0]->image_path) }}" alt="Image for {{ $projects[0]->title }}" width="100%" height="auto">
 
           </a>
           <div class="post-body">
             <div class="post-meta">
-              <a class="post-category {{ $mosts[0]->category->class }}" href="{{ route('category.posts', $mosts[0]->category->slug) }}" aria-label="Category: {{ $mosts[0]->category->name }}">
-                {{ $mosts[0]->category->name }}
+              <a class="post-category {{ $projects[0]->category->class }}" href="{{ route('category.projects', $projects[0]->category->slug) }}" aria-label="Category: {{ $projects[0]->category->name }}">
+                {{ $projects[0]->category->name }}
               </a>
-              <span class="post-date">{{ $mosts[0]->created_at->diffForHumans() }}</span>
+              <span class="post-date">{{ $projects[0]->created_at->diffForHumans() }}</span>
             </div>
             <h3 class="post-title">
-              <a href="{{ route('show.post', ['category' => $mosts[0]->category->slug, 'post' => $mosts[0]->slug]) }}" aria-label="Read more about {{ $mosts[0]->title }}">
-                {{ $mosts[0]->title }}
+              <a href="{{ route('projects.show', ['category' => $projects[0]->category->slug, 'project' => $projects[0]->slug]) }}" aria-label="Read more about {{ $projects[0]->title }}">
+                {{ $projects[0]->title }}
               </a>
             </h3>
           </div>
@@ -25,7 +25,7 @@
       </div>
       <!-- /Main Post -->
 
-      @foreach ($mosts as $post)
+      @foreach ($projects as $project)
         @if ($loop->iteration <= 1)
           @continue
         @endif
@@ -36,20 +36,20 @@
 
         <!-- Secondary Posts -->
         <div class="col-md-6">
-          <div class="post" aria-label="Post: {{ $post->title }}">
-            <a class="post-img" href="{{ route('show.post', ['category' => $post->category->slug, 'post' => $post->slug]) }}">
-              <img src="{{ asset($post->img) }}"loading="lazy" alt="Image for {{ $post->title }}" width="100%" height="auto">
+          <div class="post" aria-label="Post: {{ $project->title }}">
+            <a class="post-img" href="{{ route('projects.show', ['category' => $project->category->slug, 'project' => $project->slug]) }}">
+              <img src="{{ asset($project->image_path) }}"loading="lazy" alt="Image for {{ $project->title }}" width="100%" height="auto">
             </a>
             <div class="post-body">
               <div class="post-meta">
-                <a class="post-category {{ $post->category->class }}" href="{{ route('category.posts', $post->category->slug) }}" aria-label="Category: {{ $post->category->name }}">
-                  {{ $post->category->name }}
+                <a class="post-category {{ $project->category->class }}" href="{{ route('category.projects', $project->category->slug) }}" aria-label="Category: {{ $project->category->name }}">
+                  {{ $project->category->name }}
                 </a>
-                <span class="post-date">{{ $post->created_at->diffForHumans() }}</span>
+                <span class="post-date">{{ $project->created_at->diffForHumans() }}</span>
               </div>
               <h3 class="post-title">
-                <a href="{{ route('show.post', ['category' => $post->category->slug, 'post' => $post->slug]) }}" aria-label="Read more about {{ $post->title }}">
-                  {{ $post->title }}
+                <a href="{{ route('projects.show', ['category' => $project->category->slug, 'project' => $project->slug]) }}" aria-label="Read more about {{ $project->title }}">
+                  {{ $project->title }}
                 </a>
               </h3>
             </div>

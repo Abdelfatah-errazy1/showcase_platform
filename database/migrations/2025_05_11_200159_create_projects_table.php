@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('download_url')->nullable();
             $table->longText('documentation')->nullable();
             $table->string('image_path')->nullable(); // path to thumbnail or preview
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }

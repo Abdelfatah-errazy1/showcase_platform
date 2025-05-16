@@ -22,11 +22,13 @@ class ProjectController extends Controller
         // dd($projects);
         return view('pages.admin.projects.index', compact('projects'));
     }
-    public function show($id)
+    public function show($slug,$id)
     {
-        $project = Project::find($id);
-        // dd($projects);
-return view('pages.projects.show', compact('project'));
+        $project = Project::where('slug',$id)
+        ->with('tags','category','comments','technologies')
+        ->first();
+
+        return view('pages.projects.show', compact('project'));
     }
 
     public function create()
@@ -47,9 +49,16 @@ return view('pages.projects.show', compact('project'));
             'image' => 'nullable|image',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('projects', 'public');
+
+        
+        $filePath= null;
+        if($request->image_path){
+            $file = $request->file('image_path');
+            // dd($file);
+            $destinationPath = public_path('uploads'); 
+            $fileName = time() . '-' . $file->getClientOriginalName();
+            $file->move($destinationPath, $fileName);
+            $filePath = 'uploads/' . $fileName;
         }
 
         $project=Project::create([
@@ -59,7 +68,8 @@ return view('pages.projects.show', compact('project'));
             'demo_url' => $request->demo_url,
             'download_url' => $request->download_url,
             'documentation' => $request->documentation,
-            'image_path' => $imagePath,
+            'image_path' => $filePath,
+            'category_id'=>1
         ]);
     $project->tags()->attach($request->tags); // dans store()
         return redirect()->route('admin.projects.index')->with('success', 'Project created.');
@@ -80,9 +90,14 @@ return view('pages.projects.show', compact('project'));
             'image' => 'nullable|image',
         ]);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('projects', 'public');
-            $project->image_path = $imagePath;
+        $filePath= null;
+        if($request->image_path){
+            $file = $request->file('image_path');
+            // dd($file);
+            $destinationPath = public_path('uploads'); 
+            $fileName = time() . '-' . $file->getClientOriginalName();
+            $file->move($destinationPath, $fileName);
+            $filePath = 'uploads/' . $fileName;
         }
 
         $project->update([
@@ -92,6 +107,8 @@ return view('pages.projects.show', compact('project'));
             'demo_url' => $request->demo_url,
             'download_url' => $request->download_url,
             'documentation' => $request->documentation,
+            'image_path' => $filePath?? $project->image_path,
+
         ]);
 
         $project->save();

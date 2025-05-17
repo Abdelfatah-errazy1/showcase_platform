@@ -9,19 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function store(Request $request, Project $project)
+    public function store(Request $request, $id)
     {
         $data = $request->validate([
             'content' => 'required|string|max:1000',
         ]);
+        $project = Project::find($id);
 
         $data['user_id'] = Auth::id();
         $data['project_id'] = $project->id;
 
         Comment::create($data);
 
-        return redirect()->route('projects.show', $project->slug)
-                         ->with('success', 'Commentaire ajouté avec succès.');
+        return back();
     }
 
     public function destroy(Comment $comment)

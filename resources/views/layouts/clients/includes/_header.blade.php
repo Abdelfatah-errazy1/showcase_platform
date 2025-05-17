@@ -13,8 +13,8 @@
 
                 <!-- nav -->
                 <ul class="nav-menu nav navbar-nav flex-row d-none d-lg-block" aria-label="Main navigation">
-                    <li><a href="{{ route('category.projects','news') }}" aria-label="News category">News</a></li>
-                    <li><a href="{{ route('category.projects','popular') }}" aria-label="Popular category">Popular</a></li>
+                    <li><a href="https://ezdpro.com" aria-label="bolgs news">News</a></li>
+                    <li><a href="" aria-label="Popular category">Popular</a></li>
                     @foreach ($categories as $category )
                       <li class="{{ $category->class }}">
                           <a href="{{ route('category.projects', $category->slug) }}" aria-label="Category: {{ $category->name }}">{{ $category->name }}</a>

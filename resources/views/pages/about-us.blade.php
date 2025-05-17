@@ -7,7 +7,7 @@
             <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                 <div class="position-relative h-100">
                     <a href="{{ route('home') }}">
-                        <img class="img-fluid position-absolute " src="{{ asset('images/ezd.png') }}" alt="" style="object-fit: cover;">
+                        <img class="img-fluid position-absolute " src="{{ asset('assets/imgs/ezd.png') }}" alt="" style="object-fit: cover;">
                     </a>
                 </div>
             </div>

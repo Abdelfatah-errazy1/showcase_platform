@@ -30,6 +30,13 @@ class AppServiceProvider extends ServiceProvider
             // $view->with('mostViewedPosts', $mostViewedPosts);
 
         });
+        View::composer('pages.posts.includes.most', function ($view) {
+             $projects=Project::query()->limit(4)->get();
+            $view->with('projects', $projects);
+            // $mostViewedPosts = Project::orderBy('views', 'desc')->where('status', 'published')->take(4)->get();
+            // $view->with('mostViewedPosts', $mostViewedPosts);
+
+        });
          View::composer('pages.posts.includes.categories', function ($view) {
             
             $categories=Category::withCount('projects')
@@ -51,6 +58,11 @@ class AppServiceProvider extends ServiceProvider
             $topProjects = Project::orderBy('id', 'desc')->take(4)->get();
             $view->with('topProjects', $topProjects);
 
+        });
+        View::composer('layouts.clients.includes._footer', function ($view) {
+            $categories=Category::withCount('projects')->where('pinned',true)->orderBy('class')->get();
+            
+            $view->with('categories', $categories);
         });
     }
 }

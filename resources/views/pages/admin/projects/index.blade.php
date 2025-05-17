@@ -31,12 +31,29 @@
                         <td><a href="{{ $project->documentation_url }}" target="_blank">Docs</a></td>
                         <td>{{ $project->created_at->format('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-sm btn-warning">Éditer</a>
-                            <form action="{{ route('admin.projects.destroy', $project) }}" method="POST" class="d-inline">
-                                @csrf @method('DELETE')
-                                <button class="btn btn-sm btn-danger" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
-                            </form>
-                        </td>
+                            <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
+                                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"><i class="fas fa-cog"></i>
+                                
+                            </a>
+                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-250px py-2"
+                                data-kt-menu="true">
+                                <div class="menu-item text-hover-success px-3">
+                                    <a href="{{  route('admin.projects.edit', $project->id) }}" class="btn "> <i class="fa fa-pen"></i> Edit</a>
+                                </div>
+                                <div class="menu-item text-hover-success px-3">
+                                    <a href="{{  route('screenshots.index', $project->id) }}"   class="btn "> <i class="fa fa-images"></i>  Screenshots</a>
+                                </div>
+                                <div class="menu-item text-hover-danger px-3">
+                                    <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn">
+                                        <i class="fa fa-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                </div>
+                                </div>
+                            </td>
                     </tr>
                 @endforeach
             </tbody>

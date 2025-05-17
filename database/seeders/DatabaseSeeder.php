@@ -29,11 +29,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@user.com',
             'password' => bcrypt('user'),
         ]);
-      $category=Category::create([
-            'name' => 'Test User',
-            'slug' => 'user@user.com',
-            'description' => 'bcrypt()',
-        ]);
+      $this->call([
+        CategorySeeder::class,
+        TagSeeder::class,
+        TechnologySeeder::class,
+    ]);
+    $category=Category::find(1);
     
     Project::create([
             'title' => 'Task Manager App',
@@ -59,37 +60,10 @@ class DatabaseSeeder extends Seeder
             'category_id'=>$category->id
 
         ]);
-        // Insert categories
-        DB::table('categories')->insert([
-            [
-                'name' => 'Web Development',
-                'slug' => 'web-development',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'name' => 'E-Commerce',
-                'slug' => 'e-commerce',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]
-        ]);
+    
 
         // Insert technologies
-        DB::table('technologies')->insert([
-            [
-                'name' => 'Laravel',
-                'slug' => 'laravel',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'name' => 'Vue.js',
-                'slug' => 'vue-js',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]
-        ]);
+       
 
         // Insert projects (assume categories IDs are 1 and 2)
         DB::table('projects')->insert([

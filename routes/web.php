@@ -6,10 +6,13 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ScreenshotController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TechnologyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -93,8 +96,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::put('/technologies/{technology}', [TechnologyController::class, 'update'])->name('admin.technologies.update');
     Route::delete('/technologies/{technology}', [TechnologyController::class, 'destroy'])->name('admin.technologies.destroy');
 
-    Route::middleware(['auth'])->group(function () {
-        Route::post('/projects/{project}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::prefix('projects')->group(function () {
+        Route::post('/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
         Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     });
     
@@ -104,12 +107,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     });
     Route::delete('/admin/project-files/{file}', [ProjectFileController::class, 'destroy'])->name('admin.project_files.destroy');
 
-    Route::prefix('admin/projects/{project}/screenshots')->middleware(['auth'])->group(function () {
-        Route::get('/create', [ScreenshotController::class, 'create'])->name('admin.screenshots.create');
-        Route::post('/', [ScreenshotController::class, 'store'])->name('admin.screenshots.store');
-    });
-    Route::delete('/admin/screenshots/{screenshot}', [ScreenshotController::class, 'destroy'])->name('admin.screenshots.destroy');
-    
+   
     
     Route::prefix('tags')->middleware(['auth'])->group(function () {
         Route::get('/', [TagController::class, 'index'])->name('admin.tags.index');
@@ -120,6 +118,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::delete('/{tag}', [TagController::class, 'destroy'])->name('admin.tags.destroy');
     });
    });
+   Route::prefix('projects/{project}')->group(function () {
+    Route::resource('screenshots', ScreenshotController::class)->except(['show']);
+});
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::get('/terms-and-conditions', [PageController::class, 'termsAndConditions'])->name('terms.conditions');
 Route::get('/about-us', [PageController::class, 'aboutUs'])->name('about.us');

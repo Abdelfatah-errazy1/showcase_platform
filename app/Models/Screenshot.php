@@ -8,15 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Screenshot extends Model
 {
     use HasFactory;
-    protected $fillable = ['caption', 'image_path', 'project_id'];
+    protected $fillable = ['project_id', 'image_path', 'title', 'description'];
 
     public function project()
     {
         return $this->belongsTo(Project::class);
-    }
-
-    public function getUrlAttribute()
-    {
-        return asset('storage/' . $this->image_path);
     }
 }

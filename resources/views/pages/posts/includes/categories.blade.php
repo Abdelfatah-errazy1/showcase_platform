@@ -1,8 +1,8 @@
-<div class="aside-widget text-center" aria-label="Advertisement section">
+{{-- <div class="aside-widget text-center" aria-label="Advertisement section">
   <a href="#" style="display: inline-block; margin: auto;" aria-label="Advertisement">
     <img class="img-responsive" src="./img/ad-1.jpg" alt="Advertisement image">
   </a>
-</div>
+</div> --}}
 
 <div class="aside-widget" aria-label="Categories section">
   <div class="section-title">
@@ -16,7 +16,7 @@
              class="{{ $category->class }}" 
              aria-label="View category: {{ $category->name }}">
             {{ $category->name }}
-            <span aria-label="Number of posts in {{ $category->name }}">{{ $category->posts_count }}</span>
+            <span aria-label="Number of posts in {{ $category->name }}">{{ $category->projects_count }}</span>
           </a>
         </li>
       @endforeach

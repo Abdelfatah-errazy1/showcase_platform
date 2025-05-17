@@ -151,14 +151,14 @@ textarea.input {
   border-top: 1px solid #eceef2;
 }
 .section .section-title {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 .section .section-title h2 {
   text-transform: capitalize;
   font-size: 28px;
 }
 .section-row {
-  margin-bottom:40px;
+  margin-bottom:10px;
 }
 /*=========================================================
 NAVIGATION

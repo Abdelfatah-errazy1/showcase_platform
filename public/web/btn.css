@@ -1,0 +1,21 @@
+.btn-bd-primary {
+  font-size: 19px;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    font-weight: 600;
+    border-radius: 7px;
+    margin-right: 15px;
+    color: #FFF;
+    background-color: #212631;
+    -webkit-transition: 0.2s opacity;
+    transition: 0.2s opacity;
+}
+.btn-green{
+  background-color: #03d838;
+}
+.btn-red{
+  background-color: #e44b04;
+}
+.btn-purple{
+  background-color: #52059b;
+}

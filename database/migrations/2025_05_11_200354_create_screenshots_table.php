@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('screenshots', function (Blueprint $table) {
             $table->id();
-            $table->string('caption')->nullable();
-            $table->string('image_path');
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
+            $table->string('image_path');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

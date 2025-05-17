@@ -23,16 +23,16 @@ use Illuminate\Support\Facades\Route;
 | Public Routes
 |--------------------------------------------------------------------------
 */
-Route::middleware(['web'])->group(function () {
-    Route::get('/', function () {
-         if (Auth::check()) {
-            if(auth()->user()->is_admin){
+Route::get('/', function () {
+     if (Auth::check()) {
+        if(auth()->user()->is_admin){
 
-                return redirect(route('admin.projects.index'));
-            }
-            return redirect(route('projects.index'));
+            return redirect(route('admin.projects.index'));
         }
+    }
+    return redirect(route('projects.index'));
 })->name('home');
+Route::middleware(['web'])->group(function () {
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe');
 Route::post('/download-link', [SubscriberController::class, 'sendLink'])->name('download.link');
 

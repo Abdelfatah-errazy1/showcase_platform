@@ -101,9 +101,24 @@
 													</a>
 											@endif
 											@if($project->download_url)
-													<a href="{{ $project->download_url }}" class="btn-bd-primary btn-red me-2">
-															<i class="bi bi-download"></i> Download
+													<a href="#" id="downloadBtn" class="btn-bd-primary btn-red me-2">
+														<i class="bi bi-download"></i> Download
 													</a>
+
+													<div id="emailModal" class="modal-overlay">
+														<div class="modal-content">
+															<span class="close-modal" id="closeModal">&times;</span>
+															<h4>Enter your email to get the download link</h4>
+															<form method="POST" action="{{ route('download.link') }}">
+																@csrf
+																<input type="hidden" name="project_id" value="{{ $project->id }}">
+																<input type="email" name="email" placeholder="Your email" required>
+																<button type="submit">Get Link</button>
+															</form>
+														</div>
+													</div>
+
+
 											@endif
 											@if($project->download_url)
 													<a href="{{ $project->download_url }}" class="btn-bd-primary btn-purple me-2 ">
@@ -282,8 +297,32 @@
 			</div>
 		</div>
 	</div>
+
+
 @endsection
 @section('scripts')
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const downloadBtn = document.getElementById("downloadBtn");
+    const modal = document.getElementById("emailModal");
+    const closeModal = document.getElementById("closeModal");
+
+    downloadBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      modal.style.display = "flex";
+    });
+
+    closeModal.addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  });
+</script>
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {

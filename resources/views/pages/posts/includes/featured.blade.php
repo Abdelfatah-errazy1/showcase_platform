@@ -1,6 +1,6 @@
 <div class="aside-widget" aria-label="Most Read Posts">
   <div class="section-title">
-    <h2>Most Read</h2>
+    <h2>Top Projects</h2>
   </div>
   @foreach ($projects as $project)
     <div class="post post-widget" aria-label="Post: {{ $project->title }}">
@@ -26,7 +26,7 @@
 
 <div class="aside-widget" aria-label="Featured Posts">
   <div class="section-title">
-    <h2>Featured he Posts</h2>
+    <h2>Featured  Projects</h2>
   </div>
   @foreach ($projects as $project)
     <div class="post post-thumb" aria-label="Featured Post: {{ $project->title }}">
@@ -57,8 +57,8 @@
   @endforeach
 </div>
 
-<div class="aside-widget text-center" aria-label="Advertisement Section">
+{{-- <div class="aside-widget text-center" aria-label="Advertisement Section">
   <a href="#" style="display: inline-block; margin: auto;" aria-label="Advertisement">
     <img class="img-responsive" src="./img/ad-1.jpg" alt="Advertisement">
   </a>
-</div>
+</div> --}}

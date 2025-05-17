@@ -61,7 +61,7 @@
                 <div class="footer-widget">
                     <h3 class="footer-title" aria-label="Newsletter section">Join our Newsletter</h3>
                     <div class="footer-newsletter">
-                        <form method="POST" action="" aria-label="Subscribe to our newsletter">
+                        <form method="POST" action="https://ezdpro.com/subscribe" aria-label="Subscribe to our newsletter">
                             @csrf
                             <input class="input" type="email" id="subscribe" name="email" aria-label="Enter your email" placeholder="Enter your email">
                             <button class="newsletter-btn" aria-label="Subscribe to newsletter"><i class="fa fa-paper-plane"></i></button>

@@ -7,10 +7,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ScreenshotController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TechnologyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -31,13 +33,16 @@ Route::middleware(['web'])->group(function () {
             return redirect(route('projects.index'));
         }
 })->name('home');
+Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe');
+Route::post('/download-link', [SubscriberController::class, 'sendLink'])->name('download.link');
+
 Route::post('/admin/projects/upload-screenshot', [ProjectController::class, 'uploadScreenshot'])
     ->name('admin.projects.upload-screenshot');
 
     Route::prefix('projects')->group(function () {
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
         Route::get('/projects/{category:slug}/{project:slug}', [ProjectController::class, 'show'])->name('projects.show');
-    Route::get('/posts/category/{project:slug}', [CategoryController::class, 'getPosts'])->name('category.projects');
+    Route::get('/posts/category/{project:slug}', [CategoryController::class, 'getProjects'])->name('category.projects');
 
 });
 Route::prefix('auth')->group(function () {
@@ -121,6 +126,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
    Route::prefix('projects/{project}')->group(function () {
     Route::resource('screenshots', ScreenshotController::class)->except(['show']);
 });
+Route::get('/test', [PageController::class, 'test'])->name('test');
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::get('/terms-and-conditions', [PageController::class, 'termsAndConditions'])->name('terms.conditions');
 Route::get('/about-us', [PageController::class, 'aboutUs'])->name('about.us');

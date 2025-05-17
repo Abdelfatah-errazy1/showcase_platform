@@ -74,5 +74,13 @@ class CategoryController extends Controller
         $category->save();
         return redirect()->back()->with('success', 'Category unpinned successfully!');
     }
+      public function getProjects( $slug)
+    {
+        $category=Category::query()->where('slug',$slug)->first();
+        $projects = $category->projects()->get();
+        // dd($category);
+        $categories = Category::all();
+        return view('pages.projects.category', compact('projects','category'));
+    }
     
 }

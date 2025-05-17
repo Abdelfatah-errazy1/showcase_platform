@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    public function test()
+    {
+        return view('welcome');
+    }
     public function privacyPolicy()
     {
         return view('pages.privacy-policy');

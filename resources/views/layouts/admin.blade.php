@@ -42,7 +42,7 @@
                 <!-- Content -->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                     <!-- Toolbar -->
-                    @include('components._toolbar')
+                    @yield('toolbar')
 
                     <!-- Main Content -->
                     <div class="post d-flex flex-column-fluid" id="kt_post">

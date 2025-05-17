@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Mail;
 class SubscriberController extends Controller
 {
     //
+     public function index()
+    {
+        $subscribers = Subscriber::latest()->get();
+        return view('pages.admin.subscribers.index', compact('subscribers'));
+    }
     public function store(Request $request){
         // dd($request);
         $validated=$request->validate([
@@ -39,9 +44,12 @@ class SubscriberController extends Controller
             'project_id' => 'required|exists:projects,id',
         ]);
 
+            $user=Subscriber::create([
+                'email'=>$request->email,
+                'from'=>'download'
+        ]);
         $project = Project::findOrFail($request->project_id);
 
-        // Send email with the download link
         Mail::to($request->email)->send(new NewsletterSubscriptionMail($request->email));
 
         return redirect()->back()->with('success', 'Download link has been sent to your email.');

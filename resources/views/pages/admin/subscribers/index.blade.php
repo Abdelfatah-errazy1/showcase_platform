@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('toolbar')
     <x-toolbar 
-    title="Technologies"
-    subtitle="All Technologies List"
-    createUrl="{{ route('admin.technologies.create') }}"
+    title="Subscribers"
+    subtitle="All Subscribers List"
+    {{-- createUrl="{{ route('admin.technologies.create') }}" --}}
 />
 @endsection
 @section('content')
@@ -15,24 +15,24 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Slug</th>
+                        <th>email</th>
+                        <th>from</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($technologies as $tech)
+                    @foreach($subscribers as $sub)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $tech->name }}</td>
-                            <td>{{ $tech->slug }}</td>
+                            <td>{{ $sub->email }}</td>
+                            <td>{{ $sub->from }}</td>
                             <td>
-                                <a href="{{ route('admin.technologies.edit', $tech->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                <form action="{{ route('admin.technologies.destroy', $tech->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this technology?')">
+                                {{-- <a href="{{ route('admin.subscribers.edit', $sub->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <form action="{{ route('admin.subscribers.destroy', $sub->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this subnology?')">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger">Delete</button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @endforeach

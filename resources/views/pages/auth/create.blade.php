@@ -7,15 +7,15 @@
         <div class="wrap d-md-flex">
           <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
             <div class="text w-100">
-              <div class="icon"><img src="{{asset('images/ezd.png')}}"></div>
+              <div class="icon"><img src="{{asset('assets/imgs/ezd.png')}}"></div>
               {{-- <h2>EZD </h2> --}}
               <p>Already have an account?</p>
-              <a href="{{ route('sessions.create')}}" class="btn btn-white btn-outline-white">Sign In</a>
+              <a href="{{ route('auth.login')}}" class="btn btn-white btn-outline-white">Sign In</a>
             </div>
           </div>
           <div class="login-wrap p-4 p-md-5">
             <h3 class="mb-4">Hello! <span>Please signup to continue</span></h3>
-            <form id="form" action="{{ route('register.store')}}" method="post" class="signup-form">
+            <form id="form" action="{{ route('auth.signup')}}" method="post" class="signup-form">
               @csrf
               <div class="form-group mb-4">
                 <label class="label" for="name">Full Name</label>
@@ -42,7 +42,7 @@
               </div>
             </form>
             <div class="w-100 social-wrap">
-              <p class="mt-4"> <a href="{{ route('password.request') }}">Forgot Password</a></p>
+              <p class="mt-4"> <a href="">Forgot Password</a></p>
             </div>
           </div>
         </div>

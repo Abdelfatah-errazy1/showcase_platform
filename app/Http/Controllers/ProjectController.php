@@ -72,22 +72,27 @@ class ProjectController extends Controller
             'category_id'=>1
         ]);
     $project->tags()->attach($request->tags); // dans store()
+    $project->technologies()->attach($request->technologies); // dans store()
         return redirect()->route('admin.projects.index')->with('success', 'Project created.');
     }
 
     public function edit(Project $project)
     {
-        return view('pages.admin.projects.edit', compact('project'));
+            $categories = Category::all();
+        $technologies = Technology::all();
+        $tags = Tag::all();
+        return view('pages.admin.projects.edit', compact('categories', 'technologies', 'tags','project'));
+   
     }
 
     public function update(Request $request, Project $project)
     {
         $request->validate([
-            'title' => 'required|unique:projects,title,' . $project->id,
+            'title' => 'required' ,
             'description' => 'required',
             'demo_url' => 'nullable|url',
             'download_url' => 'nullable|url',
-            'image' => 'nullable|image',
+            'image_path' => 'nullable|image',
         ]);
 
         $filePath= null;
@@ -112,6 +117,8 @@ class ProjectController extends Controller
         ]);
 
         $project->save();
+        $project->tags()->sync($request->tags); // dans store()
+        $project->technologies()->sync($request->technologies); // dans store()
 
         return redirect()->route('admin.projects.index')->with('success', 'Project updated.');
     }

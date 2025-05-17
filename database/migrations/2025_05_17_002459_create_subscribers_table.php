@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('subscribers', function (Blueprint $table) {
             $table->id();
+
+            $table->enum('from',['newsletter','download','autre'])->default('newsletter');
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }

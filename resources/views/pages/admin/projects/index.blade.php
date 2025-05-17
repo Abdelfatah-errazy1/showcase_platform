@@ -1,14 +1,16 @@
 @extends('layouts.admin') {{-- Ton layout Metronic principal --}}
 
+@section('toolbar')
+    <x-toolbar 
+    title="Projects"
+    subtitle="All Projects List"
+    createUrl="{{ route('admin.projects.create') }}"
+/>
+@endsection
 @section('content')
 <div class="card card-xl-stretch mb-5 mb-xl-8">
-    <div class="card-header border-0 pt-5 d-flex justify-content-between align-items-center">
-        <h3 class="card-title align-items-start flex-column">
-            <span class="text-dark fw-bold fs-3">Liste des projets</span>
-        </h3>
-        <a href="{{ route('admin.projects.create') }}" class="btn btn-sm btn-primary">Ajouter un projet</a>
-    </div>
-    <div class="card-body pt-0">
+    
+    <div class="card-body pt-3">
         <table class="table align-middle table-row-dashed fs-6 gy-5">
             <thead>
                 <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">

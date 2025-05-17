@@ -51,7 +51,7 @@
 													<h5 class="mb-3">Tags:</h5>
 													<div class="d-flex flex-wrap">
 															@foreach($project->tags as $tag)
-																	<a href="{{ route('tag.posts',$tag->name) }}" class="badge badge-success text-decoration-none mx-1 my-1">
+																	<a href="{{ route('tags.projects',$tag->name) }}" class="badge badge-success text-decoration-none mx-1 my-1">
 																			#{{ $tag->name }}
 																	</a>
 															@endforeach
@@ -120,8 +120,8 @@
 
 
 											@endif
-											@if($project->download_url)
-													<a href="{{ $project->download_url }}" class="btn-bd-primary btn-purple me-2 ">
+											@if($project->demo_url)
+													<a href="{{ route('projects.documentation') }}" class="btn-bd-primary btn-purple me-2 ">
 															<i class="bi bi-download"></i> Documentation
 													</a>
 											@endif

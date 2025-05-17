@@ -42,14 +42,16 @@ Route::post('/admin/projects/upload-screenshot', [ProjectController::class, 'upl
     Route::prefix('projects')->group(function () {
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
         Route::get('/projects/{category:slug}/{project:slug}', [ProjectController::class, 'show'])->name('projects.show');
-    Route::get('/posts/category/{project:slug}', [CategoryController::class, 'getProjects'])->name('category.projects');
+    Route::get('/projects/category/{project:slug}', [CategoryController::class, 'getProjects'])->name('category.projects');
+    Route::get('/projects/tag/{project:slug}', [TagController::class, 'getProjects'])->name('tags.projects');
 
 });
 Route::prefix('auth')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-    Route::post('/login', [AuthController::class, 'signIn'])->name('auth.login');
+    Route::post('/login', [AuthController::class, 'signIn'])->name('auth.signin');
     Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
+    Route::post('/register', [AuthController::class, 'signUp'])->name('auth.signup');
 });
 
 /*
@@ -100,6 +102,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/technologies/{technology}/edit', [TechnologyController::class, 'edit'])->name('admin.technologies.edit');
     Route::put('/technologies/{technology}', [TechnologyController::class, 'update'])->name('admin.technologies.update');
     Route::delete('/technologies/{technology}', [TechnologyController::class, 'destroy'])->name('admin.technologies.destroy');
+   
+   
+    Route::get('/subscribers', [SubscriberController::class, 'index'])->name('admin.subscribers.index');
+     Route::get('/subscribers/{technology}/edit', [SubscriberController::class, 'edit'])->name('admin.subscribers.edit');
+    Route::put('/subscribers/{technology}', [SubscriberController::class, 'update'])->name('admin.subscribers.update');
+    Route::delete('/subscribers/{technology}', [SubscriberController::class, 'destroy'])->name('admin.subscribers.destroy');
 
     Route::prefix('projects')->group(function () {
         Route::post('/{id}/comments', [CommentController::class, 'store'])->name('comments.store');
@@ -127,6 +135,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('screenshots', ScreenshotController::class)->except(['show']);
 });
 Route::get('/test', [PageController::class, 'test'])->name('test');
+Route::get('/projects/documentation', [PageController::class, 'documentation'])->name('projects.documentation');
 Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::get('/terms-and-conditions', [PageController::class, 'termsAndConditions'])->name('terms.conditions');
 Route::get('/about-us', [PageController::class, 'aboutUs'])->name('about.us');

@@ -13,6 +13,10 @@ class PageController extends Controller
     {
         return view('welcome');
     }
+    public function documentation()
+    {
+        return view('pages.projects.documentation.laravel');
+    }
     public function privacyPolicy()
     {
         return view('pages.privacy-policy');

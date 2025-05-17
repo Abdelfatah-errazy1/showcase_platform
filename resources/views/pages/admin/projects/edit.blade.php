@@ -1,48 +1,24 @@
 @extends('layouts.admin')
 
+@section('toolbar')
+    <x-toolbar 
+        title="Projects"
+        subtitle="Modifier le projet"
+    />
+@endsection
+
 @section('content')
 <div class="card card-xl-stretch mb-5 mb-xl-8">
-    <div class="card-header">
-        <h3 class="card-title">Créer un nouveau projet</h3>
-    </div>
     <div class="card-body">
-        <form action="{{ route('admin.projects.update',$project->id) }}" enctype="multipart/form-data" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="title" class="form-label">Titre</label>
-                <input type="text" name="title" value="{{ old('title', $project->title ?? '') }}" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="slug" class="form-label">Slug</label>
-                <input type="text" name="slug" value="{{ old('slug', $project->slug ?? '') }}" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea name="description" rows="4" class="form-control">{{ old('description', $project->description ?? '') }}</textarea>
-            </div>
-
-            <div class="mb-3">
-                <label for="demo_url" class="form-label">URL de démo</label>
-                <input type="url" name="demo_url" value="{{ old('demo_url', $project->demo_url ?? '') }}" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label for="download_url" class="form-label">URL de téléchargement</label>
-                <input type="url" name="download_url" value="{{ old('download_url', $project->download_url ?? '') }}" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label for="documentation_url" class="form-label">URL de documentation</label>
-                <input type="url" name="documentation_url" value="{{ old('documentation_url', $project->documentation_url ?? '') }}" class="form-control">
-            </div>
-            <div class="mb-10">
-                <label class="form-label">Project Image</label>
-                <input type="file" name="image_path" class="form-control" accept="image/*">
-            </div>
-            <button type="submit" class="btn btn-primary mt-4">Enregistrer</button>
-        </form>
+        @include('components.form', [
+            'formAction' => route('admin.projects.update', $project),
+            'project' => $project,
+            'isEdit' => true,
+            'categories' => $categories,
+            'technologies' => $technologies,
+            'tags' => $tags
+        ])
     </div>
 </div>
 @endsection
+

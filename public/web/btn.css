@@ -1,4 +1,6 @@
 .btn-bd-primary {
+  margin: 3px;
+  width: 250px;
   font-size: 19px;
     text-transform: uppercase;
     padding: 12px 28px;
@@ -9,6 +11,7 @@
     background-color: #212631;
     -webkit-transition: 0.2s opacity;
     transition: 0.2s opacity;
+    text-align: center;
 }
 .btn-green{
   background-color: #03d838;

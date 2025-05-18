@@ -65,7 +65,7 @@
 										<div class="carousel-inner" style="border-radius: 12px; overflow: hidden; aspect-ratio: 16/9;">
 											@foreach($project->screenshots as $index => $screenshot)
 												<div class="carousel-item @if($index === 0) active @endif">
-													<a href="{{ asset($screenshot) }}" target="_blank" style="display: block; width: 100%; height: 100%;">
+													<a href="{{ asset($screenshot->image_path) }}" target="_blank" style="display: block; width: 100%; height: 100%;">
 														<img
 															src="{{ asset($screenshot->image_path) }}"
 															alt="Screenshot {{ $screenshot->title }}"
@@ -94,7 +94,7 @@
 
 									{{-- Files / Demo Links (Optional) --}}
 									@if($project->demo_url || $project->download_url)
-									<div class="mb-5 d-flex justify-content-center">
+									<div class="mb-5 d-flex flex-column justify-content-center align-items-center flex-md-row">
 											@if($project->demo_url)
 													<a href="{{ $project->demo_url }}" target="_blank" class=" btn-bd-primary btn-green me-2">
 															<i class="bi bi-box-arrow-up-right"></i> Live Demo

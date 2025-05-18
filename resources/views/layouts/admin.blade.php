@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://ezdpro.com" />
     <meta property="og:site_name" content="EZD Showcase" />
     <link rel="canonical" href="https://ezdpro.com" />
-    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
+      <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/imgs/ezd.png') }}">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://ezdpro.com/fonts/poppins.css" />

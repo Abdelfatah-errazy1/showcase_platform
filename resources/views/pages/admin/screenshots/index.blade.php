@@ -2,7 +2,7 @@
 @section('toolbar')
     <x-toolbar 
     title="ScreenShots"
-    subtitle=  "All ScreenShots of  {{ $project->title }} "
+    subtitle="All ScreenShot List"
     createUrl="{{ route('screenshots.create',$project) }}"
 />
 @endsection

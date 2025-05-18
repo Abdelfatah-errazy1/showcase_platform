@@ -30,9 +30,8 @@ class DatabaseSeeder extends Seeder
         TagSeeder::class,
         TechnologySeeder::class,
     ]);
-    $category=Category::find(1);
-    
-    
-    
+    $this->call(ProjectSeeder::class);
+;
+
 }
 }

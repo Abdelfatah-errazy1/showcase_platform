@@ -41,9 +41,9 @@ Route::post('/admin/projects/upload-screenshot', [ProjectController::class, 'upl
 
     Route::prefix('projects')->group(function () {
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
-        Route::get('/projects/{category:slug}/{project:slug}', [ProjectController::class, 'show'])->name('projects.show');
-    Route::get('/projects/category/{project:slug}', [CategoryController::class, 'getProjects'])->name('category.projects');
-    Route::get('/projects/tag/{project:slug}', [TagController::class, 'getProjects'])->name('tags.projects');
+        Route::get('/project/{category:slug}/{project:slug}', [ProjectController::class, 'show'])->name('projects.show');
+    Route::get('/category/{category:slug}', [CategoryController::class, 'getProjects'])->name('category.projects');
+    Route::get('/tag/{project:slug}', [TagController::class, 'getProjects'])->name('tags.projects');
 
 });
 Route::prefix('auth')->group(function () {

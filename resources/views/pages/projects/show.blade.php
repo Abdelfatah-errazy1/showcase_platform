@@ -1,8 +1,8 @@
 @extends('layouts.clients.client')
 @section('meta')
-		<meta name="title" content=" {{ $project->title }} - Explore the Latest Posts @foreach($project->tags as $t) , {{ $t->name }} @endforeach ">
-    <meta name="description" content="blog related to {{ $project->title }}. ">
-		<meta name="keywords" content="{{ is_array($project->keywords) ? implode(',', $project->keywords) : $project->keywords }}">
+		<meta name="title" content=" {{ $project->title }} - Explore the Latest Projects @foreach($project->tags as $t) , {{ $t->name }} @endforeach ">
+    <meta name="description" content="blog related to {{ $project->description }}. ">
+		{{-- <meta name="keywords" content="{{ is_array($project->keywords) ? implode(',', $project->keywords) : $project->keywords }}"> --}}
 
 
 @endsection
